@@ -3,7 +3,6 @@ import './App.css';
 import React, { useState } from 'react'
 import NavBar from './Components/NavBar';
 import News from './Components/News';
-import Footer from './Components/Footer';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar'
 
@@ -32,7 +31,6 @@ const App = ()=> {
           <Route exact path="/technology"><News setProgress={setProgress} apiKey={apiKey} key="technology" pageSize={pageSize} country="in" category="technology"/></Route> 
         </Switch>
         </Router>
-        <Footer/>
       </div>
     )
  
