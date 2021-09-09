@@ -10,6 +10,7 @@ const News = (props)=>{
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [totalResults, setTotalResults] = useState(0)
+    const [articleslength,setArticleslength]=useState(0)
     
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -24,6 +25,7 @@ const News = (props)=>{
         let parsedData = await data.json()
         props.setProgress(70);
         setArticles(parsedData.articles)
+        setArticleslength(articles.length)
         setTotalResults(parsedData.totalResults)
         setLoading(false)
         props.setProgress(100);
@@ -43,18 +45,18 @@ const News = (props)=>{
         let parsedData = await data.json()
         setArticles(articles.concat(parsedData.articles))
         setTotalResults(parsedData.totalResults)
-      };
- 
-        return (
+      }
+   return (
             <>
                 <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>NewsBulletin - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
                 {loading ? <Spinner /> :
                  <InfiniteScroll
-                 dataLength={articles.length}
+                 dataLength={articleslength}
                  next={fetchMoreData}
                  hasMore={articles.length !== totalResults}
                  loader={<Spinner/>}
              > 
+
                  <div className="container">
                       
                  <div className="row">
